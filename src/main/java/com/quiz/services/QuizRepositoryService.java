@@ -3,10 +3,12 @@ package com.quiz.services;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.quiz.quizObjects.Quiz;
 import com.quiz.repositories.QuizRepository;
 
+@Service
 public class QuizRepositoryService {
 	
 	private QuizRepository quizRepository;
@@ -22,5 +24,9 @@ public class QuizRepositoryService {
 			quizes.add(quiz);
 		}
 		return quizes;
+	}
+	
+	public void save(Quiz quiz) {
+		quizRepository.save(quiz);
 	}
 }

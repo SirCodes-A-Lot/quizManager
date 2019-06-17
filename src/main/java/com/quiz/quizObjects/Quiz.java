@@ -1,35 +1,44 @@
 package com.quiz.quizObjects;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Quiz {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String title;
 	
 	private String description;
 	
-	private ArrayList<Question> questions;
+	@OneToMany(mappedBy="quiz")
+	private List<Question> questions;
+	
+	//@OneToMany(targetEntity=Question.class, mappedBy="quiz", fetch=FetchType.EAGER)
+	//private List<Question> questions;
 	
 	public Quiz() {
 	}
 
-	public Quiz(String title, String description, ArrayList<Question> questions) {
+	public Quiz(int id, String title, String description, List<Question> questions) {
+		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.questions = questions;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -53,7 +62,7 @@ public class Quiz {
 		this.description = description;
 	}
 
-	public ArrayList<Question> getQuestions() {
+	public List<Question> getQuestions() {
 		return questions;
 	}
 
