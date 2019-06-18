@@ -1,0 +1,16 @@
+.question{
+	border: 2px solid Black;
+	padding: 5px;
+	margin-top: 10px;
+	background-color: AliceBlue;
+}
+
+.answer{
+	display: flex;
+	flex-direction: row;
+	padding: 3px;
+}
+
+.answerText{
+	margin-left: 10px;
+}

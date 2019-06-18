@@ -63,5 +63,9 @@ public class Question {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+	
+	public int getId() {
+		return id;
+	}
 
 }

@@ -43,8 +43,9 @@ public class PageControllers {
 	}
 	
 	@GetMapping("/editQuiz")
-	public String getEditPage(HttpServletRequest request) {
+	public String getEditPage(HttpServletRequest request, @RequestParam String quizTitle, Model model) {
 		if (isEditor(request)) {
+			quizService.addQuizDataToModel(model, quizTitle);
 			return "editQuestions";
 		} else {
 			return "redirect:/";
@@ -59,7 +60,6 @@ public class PageControllers {
 	
 	private boolean isLoggedIn (HttpServletRequest request) {
 		String userType = (String) request.getSession().getAttribute(QuizConstants.ACCESS);
-		System.out.println(userType);
 		if (userType != null && (
 				userType.contentEquals(QuizConstants.RESTRICTED) ||
 				userType.contentEquals(QuizConstants.VIEW) ||
@@ -71,7 +71,7 @@ public class PageControllers {
 	}
 	
 	private boolean isEditor (HttpServletRequest request) {
-		String userType = (String) request.getSession().getAttribute(QuizConstants.USER_TYPE);
+		String userType = (String) request.getSession().getAttribute(QuizConstants.ACCESS);
 		if (userType != null && userType.contentEquals(QuizConstants.EDIT)) {
 			return true;
 		} else {

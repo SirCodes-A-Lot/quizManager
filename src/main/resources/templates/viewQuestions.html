@@ -10,16 +10,23 @@
 		<span class = "navBar">
 			<a class="navButton" href="/home">home</a>
 			<a class="navButton" href="/">log out</a>
+			<a th:if="${session.access} == 'Edit'" class="navButton" th:href="@{/editQuiz(quizTitle=${selectedQuiz.title})}">edit quiz</a>
 		</span>
 		<h1 th:text="${selectedQuiz.title}"></h1>
+		<div id="allQuestions">
 		<th:block th:each="questionEntry : ${selectedQuiz.questions.questions}">
-			<p th:text="${questionEntry.question}"></p>
-	   		<th:block th:if="${session.access} == 'View' OR ${session.access} == 'Edit'">
-	   			<th:block th:each="answer : ${questionEntry.answerOptions}">
-					<p th:text="${answer}"></p>
-	   			</th:block>
-	   		</th:block>
+			<div class="question">
+				<p th:text="${questionEntry.question}"></p>
+		   		<th:block th:if="${session.access} == 'View' OR ${session.access} == 'Edit'">
+		   			<th:block th:each="answer : ${questionEntry.answerOptions}">
+		   				<div class="answer">
+							<div class="answerText" th:text="${answer}"></div>
+						</div>
+		   			</th:block>
+		   		</th:block>
+		   	</div>
    		</th:block>
+   		</div>
 		<script src = "/js/question-page.js"></script>
 	</body>
 </html>
