@@ -26,18 +26,18 @@ public class Question {
 	private String question;
 	
     @ManyToOne
-    @JoinColumn(name="quiz_id", nullable=false)
-	private Quiz quiz;
+    @JoinColumn(name="questions", nullable=false)
+	private QuestionList questionList;
 	
 	
 	public Question() {
 	}
 
-	public Question(String[] answerOptions, String correctAnswer, String question, Quiz quiz) {
+	public Question(String[] answerOptions, String correctAnswer, String question, QuestionList questionList) {
 		this.answerOptions = answerOptions;
 		this.correctAnswer = correctAnswer;
 		this.question = question;
-		this.quiz = quiz;
+		this.questionList = questionList;
 	}
 
 	public String[] getAnswerOptions() {

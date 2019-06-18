@@ -33,4 +33,8 @@ public class QuizRepositoryService {
 	public void deleteAll() {
 		quizRepository.deleteAll();
 	}
+
+	public Quiz getQuizByTitle(String title) {
+		return quizRepository.findByTitle(title);
+	}
 }

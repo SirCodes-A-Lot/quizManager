@@ -9,6 +9,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import com.quiz.quizObjects.Question;
+import com.quiz.quizObjects.QuestionList;
 import com.quiz.quizObjects.Quiz;
 import com.quiz.services.LoginService;
 import com.quiz.services.QuizRepositoryService;
@@ -24,16 +25,6 @@ public class QuizDataBasePopulator {
 	
 	private LoginService loginService;
 	
-	private Quiz quiz1 = new Quiz();
-	
-	private String[] question1answers = {"red","green","blue"};
-	
-	private String[] question2answers = {"true","false"};
-	
-	private Question question1 = new Question(question1answers, "red", "What colour is a red fire truck?", quiz1);
-	
-	private Question question2 = new Question(question2answers, "true", "Apples can be red", quiz1);
-	
 	@Autowired
 	public QuizDataBasePopulator (QuizRepositoryService quizRepositoryService, UserRepositoryService userRepositoryService,
 			LoginService loginService) {
@@ -44,12 +35,29 @@ public class QuizDataBasePopulator {
 	
 	private ArrayList<Quiz> getDefaultQuizes() {
 		ArrayList<Quiz> quizes = new ArrayList<Quiz>();
-		quiz1.setQuestions(new ArrayList<Question>( Arrays.asList(question1, question2)));
+		Quiz quiz1 = new Quiz();
+		QuestionList questionList1 = new QuestionList();
+		String[] question1answers = {"red","green","blue"};
+		Question question1 = new Question(question1answers, "red", "What colour is a red fire truck?", questionList1);
+		String[] question2answers = {"true","false"};
+		Question question2 = new Question(question2answers, "true", "Apples can be red", questionList1);
+		questionList1.setQuestions(new ArrayList<Question>(Arrays.asList(question1, question2)));
+		quiz1.setQuestions(questionList1);
 		quiz1.setId(1);
 		quiz1.setTitle("Colours");
 		quiz1.setDescription("What colour is...");
 		
+/**
+		Quiz quiz2 = new Quiz();
+		String[] question3answers = {"red","green","blue"};
+		Question question3 = new Question(question3answers, "green", "What colour is a green fire truck?", quiz2);
+		quiz2.setQuestions(new ArrayList<Question>( Arrays.asList(question1)));
+		quiz2.setId(2);
+		quiz2.setTitle("Fire trucks");
+		quiz2.setDescription("Do you know your fire trucks?");
+		**/
 		quizes.add(quiz1);
+		//quizes.add(quiz2);
 		return quizes;
 	}
 	
@@ -70,11 +78,14 @@ public class QuizDataBasePopulator {
 		userRepositoryService.deleteAll();
 		ArrayList<Quiz> quizes = getDefaultQuizes();
 		for (int i =0; i< quizes.size(); i++){
+			System.out.println(quizes.get(i).getQuestions().getQuestions());
 			quizRepositoryService.save(quizes.get(i));
 		}
 		ArrayList<UserType> users = getDefaultUsers();
 		for (int i =0; i< users.size(); i++){
 			userRepositoryService.save(users.get(i));
 		}
+		Quiz quiz = quizRepositoryService.getQuizByTitle("Colours");
+		System.out.println(quiz.getQuestions().getQuestions().size());
 	}
 }

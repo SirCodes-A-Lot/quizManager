@@ -7,6 +7,11 @@
 	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
+		<h1 th:text="${selectedQuiz.title}"></h1>
+		<th:block th:each="questionEntry : ${selectedQuiz.questions.questions}">
+			<p th:text="${questionEntry.question}"></p>
+   		</th:block>
+		<script src = "/js/home.js"></script>
 		<script src = "/js/question-page.js"></script>
 	</body>
 </html>
