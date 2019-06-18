@@ -14,3 +14,7 @@
 .answerText{
 	margin-left: 10px;
 }
+
+.questionInput{
+	width: 70%;
+}

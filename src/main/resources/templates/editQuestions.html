@@ -23,10 +23,10 @@
 			<div id="allQuestions">
 			<th:block th:each="questionEntry : ${selectedQuiz.questions.questions}">
 				<div class="question" th:data-question-id="${questionEntry.id}">
-					<p th:text="${questionEntry.question}"></p>
+					<textarea class="questionInput" th:text="${questionEntry.question}"></textarea>
 			   		<th:block th:each="answer : ${questionEntry.answerOptions}">
 		   				<div class="answer">
-							<div class="answerText" th:text="${answer}"></div>
+							<input class="answerTextInput" th:value="${answer}"></input>
 						</div>
 			   		</th:block>
 		   		</div>
