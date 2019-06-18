@@ -55,12 +55,14 @@ public class QuizDataBasePopulator {
 	
 	private ArrayList<UserType> getDefaultUsers() {
 		ArrayList<UserType> users = new ArrayList<>();
-		users.add(new UserType("Restricted", loginService.encryptString("Restricted")));
-		users.add(new UserType("View", loginService.encryptString("View")));
-		users.add(new UserType("Edit", loginService.encryptString("Edit")));
+		String restricted = loginService.encryptString("Restricted");
+		String view = loginService.encryptString("View");
+		String edit = loginService.encryptString("Edit");
+		users.add(new UserType("Restricted", restricted));
+		users.add(new UserType("View", view));
+		users.add(new UserType("Edit", edit));
 		return users;
 	}
-	
 	
 	@EventListener(ApplicationReadyEvent.class)
 	public void setQuizAndUsersInDataBaseAfterStartup() {
