@@ -28,7 +28,7 @@ public class PageControllers {
 			quizService.addAllQuizesToModel(model);
 			return "home";
 		} else {
-			return "index";
+			return "redirect:/";
 		}
 	}
 	
@@ -38,7 +38,7 @@ public class PageControllers {
 			quizService.addQuizDataToModel(model, quizTitle);
 			return "viewQuestions";
 		} else {
-			return "index";
+			return "redirect:/";
 		}
 	}
 	
@@ -47,8 +47,14 @@ public class PageControllers {
 		if (isEditor(request)) {
 			return "editQuestions";
 		} else {
-			return "index";
+			return "redirect:/";
 		}
+	}
+	
+	@GetMapping("/")
+	public String logoutGetLoginPage(HttpServletRequest request) {
+		request.getSession().setAttribute(QuizConstants.ACCESS, null);
+		return "index";
 	}
 	
 	private boolean isLoggedIn (HttpServletRequest request) {
