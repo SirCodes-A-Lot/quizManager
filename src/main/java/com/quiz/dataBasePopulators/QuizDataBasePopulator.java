@@ -40,24 +40,26 @@ public class QuizDataBasePopulator {
 		String[] question1answers = {"red","green","blue"};
 		Question question1 = new Question(question1answers, "red", "What colour is a red fire truck?", questionList1);
 		String[] question2answers = {"true","false"};
-		Question question2 = new Question(question2answers, "true", "Apples can be red", questionList1);
+		Question question2 = new Question(question2answers, "true", "Apples can be red, true or false?", questionList1);
 		questionList1.setQuestions(new ArrayList<Question>(Arrays.asList(question1, question2)));
 		quiz1.setQuestions(questionList1);
 		quiz1.setId(1);
 		quiz1.setTitle("Colours");
 		quiz1.setDescription("What colour is...");
 		
-/**
+
 		Quiz quiz2 = new Quiz();
+		QuestionList questionList2 = new QuestionList();
 		String[] question3answers = {"red","green","blue"};
-		Question question3 = new Question(question3answers, "green", "What colour is a green fire truck?", quiz2);
-		quiz2.setQuestions(new ArrayList<Question>( Arrays.asList(question1)));
+		Question question3 = new Question(question3answers, "green", "What colour is a green fire truck?", questionList2);
+		questionList2.setQuestions(new ArrayList<Question>( Arrays.asList(question3)));
+		quiz2.setQuestions(questionList2);
 		quiz2.setId(2);
 		quiz2.setTitle("Fire trucks");
 		quiz2.setDescription("Do you know your fire trucks?");
-		**/
+		
 		quizes.add(quiz1);
-		//quizes.add(quiz2);
+		quizes.add(quiz2);
 		return quizes;
 	}
 	
