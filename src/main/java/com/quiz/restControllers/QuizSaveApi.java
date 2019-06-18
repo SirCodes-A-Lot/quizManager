@@ -31,6 +31,7 @@ public class QuizSaveApi {
 		Response response = new Response();
 		if (userValidationService.isEditor(request)) {
 			System.out.println(requestData);
+			response.setStatus("200");
 		} else {
 			response.setStatus("401");
 		}

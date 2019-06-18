@@ -19,7 +19,7 @@
 			<br>
 			Title
 			<br>
-			<input th:value="${selectedQuiz.title}"></input>
+			<input id="titleInput" th:value="${selectedQuiz.title}"></input>
 			<div id="allQuestions">
 			<th:block th:each="questionEntry : ${selectedQuiz.questions.questions}">
 				<div class="question" th:data-question-id="${questionEntry.id}">
