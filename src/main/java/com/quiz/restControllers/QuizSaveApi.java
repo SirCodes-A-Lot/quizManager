@@ -30,7 +30,7 @@ public class QuizSaveApi {
 	public Response saveQuiz(@RequestBody HashMap<String,Object>requestData, HttpServletRequest request) {
 		Response response = new Response();
 		if (userValidationService.isEditor(request)) {
-			
+			System.out.println(requestData);
 		} else {
 			response.setStatus("401");
 		}

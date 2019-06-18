@@ -1,14 +1,18 @@
 $(document).ready(function() {
-	document.getElementById("saveQuiz").addEventListener("submit", saveQuizSubmit, false);
+	console.log("edit page js");
+	document.getElementById("editQuiz").addEventListener("submit", saveQuizSubmit, false);
 });
 
 function saveQuizSubmit(e){
+	console.log("here");
 	e.preventDefault();
-	ajaxSubmitQuiz(getFormData());
+	ajaxSubmitQuiz(getQuizData());
+	return false;
 }
 
 function getQuizData() {
-	var formData = {};
+	var data = {};
+	var formData = JSON.stringify(data);
 	return formData;
 }
 
