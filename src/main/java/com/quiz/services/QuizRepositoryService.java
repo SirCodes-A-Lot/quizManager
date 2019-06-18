@@ -29,4 +29,8 @@ public class QuizRepositoryService {
 	public void save(Quiz quiz) {
 		quizRepository.save(quiz);
 	}
+	
+	public void deleteAll() {
+		quizRepository.deleteAll();
+	}
 }

@@ -23,5 +23,9 @@ public class UserRepositoryService {
 	public void save(UserType userType) {
 		userRepository.save(userType);
 	}
+	
+	public void deleteAll() {
+		userRepository.deleteAll();
+	}
 
 }

@@ -31,7 +31,7 @@ public class PageControllers {
 	
 	@GetMapping("/editQuiz")
 	public String getEditPage(HttpServletRequest request) {
-		if (isLoggedIn(request)) {
+		if (isEditor(request)) {
 			return "editQuestions";
 		} else {
 			return "index";

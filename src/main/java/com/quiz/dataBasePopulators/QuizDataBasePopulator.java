@@ -66,6 +66,8 @@ public class QuizDataBasePopulator {
 	
 	@EventListener(ApplicationReadyEvent.class)
 	public void setQuizAndUsersInDataBaseAfterStartup() {
+		quizRepositoryService.deleteAll();
+		userRepositoryService.deleteAll();
 		ArrayList<Quiz> quizes = getDefaultQuizes();
 		for (int i =0; i< quizes.size(); i++){
 			quizRepositoryService.save(quizes.get(i));
