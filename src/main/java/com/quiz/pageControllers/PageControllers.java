@@ -37,9 +37,9 @@ public class PageControllers {
 	}
 	
 	@GetMapping("/viewQuiz")
-	public String getQuizPage(HttpServletRequest request, @RequestParam String quizTitle, Model model) {
+	public String getQuizPage(HttpServletRequest request, @RequestParam String quizId, Model model) {
 		if (userValidationService.isLoggedIn(request)) {
-			quizService.addQuizDataToModel(model, quizTitle);
+			quizService.addQuizDataToModel(model, quizId);
 			return "viewQuestions";
 		} else {
 			return "redirect:/";
@@ -47,9 +47,9 @@ public class PageControllers {
 	}
 	
 	@GetMapping("/editQuiz")
-	public String getEditPage(HttpServletRequest request, @RequestParam String quizTitle, Model model) {
+	public String getEditPage(HttpServletRequest request, @RequestParam String quizId, Model model) {
 		if (userValidationService.isEditor(request)) {
-			quizService.addQuizDataToModel(model, quizTitle);
+			quizService.addQuizDataToModel(model, quizId);
 			return "editQuestions";
 		} else {
 			return "redirect:/";

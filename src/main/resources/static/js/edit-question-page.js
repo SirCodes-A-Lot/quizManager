@@ -1,6 +1,13 @@
 $(document).ready(function() {
 	document.getElementById("editQuiz").addEventListener("submit", saveQuizSubmit, false);
+	document.getElementById("deleteQuestion").addEventListener("click", deleteQuestion, false);
 });
+
+function deleteQuestion(e) {
+	e.preventDefault();
+	var question = e.target.parentElement;
+	question.parentNode.removeChild(question);
+}
 
 function saveQuizSubmit(e){
 	e.preventDefault();
@@ -9,12 +16,18 @@ function saveQuizSubmit(e){
 
 function getQuizData() {
 	var data = {
+			"quizId":getQuizId(),
 			"title": getTitle(),
 			"questions" : getQuestions()
 	};
 	console.log(data);
 	var formData = JSON.stringify(data);
 	return formData;
+}
+
+function getQuizId() {
+	var quiz = document.getElementById("allQuestions");
+	return quiz.getAttribute("data-quiz-id");
 }
 
 function getTitle() {

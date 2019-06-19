@@ -10,7 +10,7 @@
 		<span class = "navBar">
 			<a class="navButton" href="/home">home</a>
 			<a class="navButton" href="/">log out</a>
-			<a th:if="${session.access} == 'Edit'" class="navButton" th:href="@{/editQuiz(quizTitle=${selectedQuiz.title})}">edit quiz</a>
+			<a th:if="${session.access} == 'Edit'" class="navButton" th:href="@{/editQuiz(quizId=${selectedQuiz.quizId})}">edit quiz</a>
 		</span>
 		<h1 th:text="${selectedQuiz.title}"></h1>
 		<div id="allQuestions">

@@ -10,7 +10,7 @@
 		<span class = "navBar">
 			<a class="navButton" href="/home">home</a>
 			<a class="navButton" href="/">log out</a>
-			<a class="navButton" th:href="@{/viewQuiz(quizTitle=${selectedQuiz.title})}">view quiz</a>
+			<a class="navButton" th:href="@{/viewQuiz(quizId=${selectedQuiz.quizId})}">view quiz</a>
 		</span>
 		<form id="editQuiz">
 			<br>
@@ -20,7 +20,7 @@
 			Title
 			<br>
 			<input id="titleInput" th:value="${selectedQuiz.title}"></input>
-			<div id="allQuestions">
+			<div id="allQuestions" th:data-quiz-id="${selectedQuiz.quizId}">
 			<th:block th:each="questionEntry : ${selectedQuiz.questions.questions}">
 				<div class="question" th:data-question-id="${questionEntry.id}">
 					<textarea class="questionInput" th:text="${questionEntry.question}"></textarea>
@@ -29,6 +29,7 @@
 							<input class="answerTextInput" th:value="${answer}"></input>
 						</div>
 			   		</th:block>
+			   		<button id = deleteQuestion>Delete Question</button>
 		   		</div>
 	   		</th:block>
 	   		</div>

@@ -9,7 +9,7 @@
 	<body>
 		<h2>Please select a quiz</h2>
 		<th:block th:each="quiz : ${quizes}">
-			<a th:href="@{/viewQuiz(quizTitle=${quiz.title})}" th:text="${quiz.title}"></a>
+			<a th:href="@{/viewQuiz(quizId=${quiz.quizId})}" th:text="${quiz.title}"></a>
 			<p th:text="${quiz.description}"></p>
    		</th:block>
 		<script src = "/js/home-page.js"></script>
