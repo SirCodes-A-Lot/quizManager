@@ -54,4 +54,8 @@ public class QuizRepositoryService {
 		}
 		return quizRepository.findById(id).get();
 	}
+
+	public void deleteQuizById(int quizId) {
+		quizRepository.deleteById(quizId);
+	}
 }

@@ -15,6 +15,7 @@ function deleteQuiz(e) {
 	var quizId = quizEntry.getAttribute("data-quiz-id");
 	var data = {"quizId": quizId};
 	var formData = JSON.stringify(data);
+	quizEntry.parentNode.removeChild(quizEntry);
 	$.ajax({
 		type : "DELETE",
 		url : "/deleteQuiz",

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,14 +15,14 @@ import com.quiz.services.QuizService;
 import com.quiz.services.UserValidationService;
 
 @RestController
-public class QuizSaveApi {
+public class QuizModifierApi {
 	
 	private QuizService quizService;
 	
 	private UserValidationService userValidationService;
 	
 	@Autowired
-	public QuizSaveApi (QuizService quizService, UserValidationService userValidationService) {
+	public QuizModifierApi (QuizService quizService, UserValidationService userValidationService) {
 		this.quizService = quizService;
 		this.userValidationService = userValidationService;
 	}
@@ -44,6 +45,19 @@ public class QuizSaveApi {
 		Response response = new Response();
 		if (userValidationService.isEditor(request)) {
 			quizService.makeNewDefaultQuiz();
+			response.setStatus("200");
+		} else {
+			response.setStatus("401");
+		}
+		return response;
+	}
+
+	@DeleteMapping("/deleteQuiz")
+	public Response deleteQuiz(@RequestBody HashMap<String,Object>requestData, HttpServletRequest request) {
+		Response response = new Response();
+		if (userValidationService.isEditor(request)) {
+			quizService.deleteQuiz(requestData);
+			System.out.println(requestData);
 			response.setStatus("200");
 		} else {
 			response.setStatus("401");

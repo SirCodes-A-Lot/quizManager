@@ -75,4 +75,9 @@ public class QuizService {
 		quizRepositoryService.save(quiz);
 	}
 
+	public void deleteQuiz(HashMap<String, Object> requestData) {
+		int quizId = Integer.parseInt((String) requestData.get("quizId"));
+		quizRepositoryService.deleteQuizById(quizId);
+	}
+
 }
