@@ -1,8 +1,38 @@
+var newQuestionTemporaryIdInt = 1;
 $(document).ready(function() {
 	document.getElementById("editQuiz").addEventListener("submit", saveQuizSubmit, false);
 	document.getElementById("deleteQuestion").addEventListener("click", deleteQuestion, false);
+	document.getElementById("newQuestionForm").addEventListener("submit", addQuestion, false);
 	populateAddQuestionDropDown();
 });
+
+function addQuestion(e){
+	e.preventDefault();
+	var questionDiv = $("#allQuestions");
+	var question = makeDefaultQuestion();
+	var position = 	document.getElementById("newQuestionDropDown").value-1;
+	//if (position <= $(".question").length){
+	//	console.log(question);
+	//	//questionDiv.prepend(question);
+	//	questionDiv.insertBefore(question, questionDiv.children()[position]);
+	//}
+    if(position === 0) {
+    	$("#allQuestions").prepend(question);
+    } else {
+    	$("#allQuestions > div:nth-child(" + (position) + ")").after(question);
+    }
+}
+function insertAtIndex(i, newElement, parentElement) {
+
+}
+
+function makeDefaultQuestion(){
+	var newQuestion = document.createElement("DIV");
+	newQuestion.setAttribute("class", "answerLabel");
+	newQuestion.innerHTML= "<div>hello</div>";
+	console.log(newQuestion);
+	return newQuestion;
+}
 
 function populateAddQuestionDropDown(){
 	var numberQuestions = $(".question").length;
