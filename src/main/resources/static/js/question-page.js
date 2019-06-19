@@ -16,6 +16,11 @@ function markQuiz(e){
 			answers.push(answer);
 		}
 	}
+	if (answers.length != questionParents.length){
+		var resultDiv = document.getElementById("markingResults");
+		resultDiv.innerHTML= "you must answer all the questions!";
+		return;
+	}
 	var quizId = e.target.getAttribute("data-quiz-id");
 	console.log(quizId);
 	var data = {
@@ -36,6 +41,8 @@ function ajaxMarkQuiz(formData) {
 			if (result.status == "200") {
 				console.log("success");
 				console.log(result);
+				displayResult(result.data);
+				document.getElementById("markingResults").text
 				//window.location.href = "/yourScore?score="+result.data.score;
 			} else {
 				console.log("ERROR:  ", "something went wrong");
@@ -45,6 +52,12 @@ function ajaxMarkQuiz(formData) {
 			console.log("ERROR: ", e);
 		}
 	});
+}
+
+function displayResult(responseData){
+	var score = responseData.score;
+	var resultDiv = document.getElementById("markingResults");
+	resultDiv.innerHTML= "you scored: " + score;
 }
 
 function numberQuestionsAndAnswers(){

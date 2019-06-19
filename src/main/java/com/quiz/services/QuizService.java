@@ -83,7 +83,6 @@ public class QuizService {
 
 	public int markQuiz(HashMap<String, Object> requestData) {
 		int quizId = Integer.parseInt((String) requestData.get("quizId"));
-		System.out.println(requestData);
 		ArrayList<String> submittedAnswers = (ArrayList<String>) requestData.get("answers");
 		Quiz quiz = quizRepositoryService.getQuizById(quizId);
 		List<Question> quizQuestions = quiz.getQuestions().getQuestions();
