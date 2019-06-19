@@ -1,12 +1,29 @@
 $(document).ready(function() {
 	document.getElementById("editQuiz").addEventListener("submit", saveQuizSubmit, false);
 	document.getElementById("deleteQuestion").addEventListener("click", deleteQuestion, false);
+	populateAddQuestionDropDown();
 });
+
+function populateAddQuestionDropDown(){
+	var numberQuestions = $(".question").length;
+	var dropDown = document.getElementById("newQuestionDropDown");
+	while (dropDown.firstChild) {
+		dropDown.removeChild(dropDown.firstChild);
+	}
+	for (var i=1; i<numberQuestions +2; i++) {
+		var option = document.createElement("OPTION");
+		option.value=i;
+		option.text=i;
+		dropDown.append(option);
+	}
+}
 
 function deleteQuestion(e) {
 	e.preventDefault();
 	var question = e.target.parentElement;
 	question.parentNode.removeChild(question);
+	populateAddQuestionDropDown();
+	numberQuestionsAndAnswers();
 }
 
 function saveQuizSubmit(e){

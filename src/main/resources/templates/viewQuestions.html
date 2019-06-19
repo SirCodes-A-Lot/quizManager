@@ -20,6 +20,7 @@
 		   		<th:block th:if="${session.access} == 'View' OR ${session.access} == 'Edit'">
 		   			<th:block th:each="answer : ${questionEntry.answerOptions}">
 		   				<div class="answer">
+		   					<input class="radioAnswer" type="radio" th:name="${questionEntry.id}" th:value="${answer}">
 							<div class="answerText" th:text="${answer}"></div>
 						</div>
 		   			</th:block>

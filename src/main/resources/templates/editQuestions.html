@@ -12,10 +12,15 @@
 			<a class="navButton" href="/">log out</a>
 			<a class="navButton" th:href="@{/viewQuiz(quizId=${selectedQuiz.quizId})}">view quiz</a>
 		</span>
+		<br>
+		<br>
+		<button type ="submit" id="saveQuiz">Save Changes</button>
+		<form id="newQuestionForm">
+			<button id="addQuestion">Add Question</button>
+			<select name="newQuestionNumber" id="newQuestionDropDown">
+			</select>
+		</form>
 		<form id="editQuiz">
-			<br>
-			<button type ="submit" id="saveQuiz">Save Changes</button>
-			<br>
 			<br>
 			Title
 			<br>
@@ -26,6 +31,8 @@
 					<textarea class="questionInput" th:text="${questionEntry.question}"></textarea>
 			   		<th:block th:each="answer : ${questionEntry.answerOptions}">
 		   				<div class="answer">
+		   					<input th:if="${answer} == ${questionEntry.correctAnswer}" class="radioAnswer" type="radio" th:name="${questionEntry.id}" th:value="${answer}" checked>
+		   					<input th:if="${answer} != ${questionEntry.correctAnswer}" class="radioAnswer" type="radio" th:name="${questionEntry.id}" th:value="${answer}">
 							<input class="answerTextInput" th:value="${answer}"></input>
 						</div>
 			   		</th:block>

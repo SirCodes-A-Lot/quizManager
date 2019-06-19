@@ -3,6 +3,7 @@ $(document).ready(function() {
 });
 
 function numberQuestionsAndAnswers(){
+	deleteExistingNumbering();
 	var questions = $(".question");
 	for (var i=0; i<questions.length; i++) {
 		var questionNumber = i + 1;
@@ -25,4 +26,9 @@ function numberAnswers(question){
 		answerLabel.textContent = letter +". ";
 		answer.prepend(answerLabel);
 	}
+}
+
+function deleteExistingNumbering(){
+	$(".questionNumber").remove();
+	$(".answerLabel").remove();
 }
