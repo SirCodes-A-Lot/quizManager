@@ -137,7 +137,6 @@ function getQuizData() {
 			"description": getDescription(),
 			"questions": getQuestions()
 	};
-	console.log(data);
 	var formData = JSON.stringify(data);
 	return formData;
 }
@@ -166,12 +165,25 @@ function getQuestions(){
 		var questionInput = questionParent.getElementsByClassName("questionInput")[0];
 		var questionData = {
 				"question":questionInput.value,
-				"answers":getQuestionAnswers(questionParent)
+				"answers":getQuestionAnswers(questionParent),
+				"correctAnswer":getCorrectAnswer(questionParent)
 		}
 		console.log(questionInput);
 		questions.push(questionData);
 	}
 	return questions;
+}
+
+function getCorrectAnswer(questionParent) {
+	var answerInputs = questionParent.getElementsByClassName("answerTextInput");
+	var radioInputs = questionParent.getElementsByClassName("radioAnswer")
+	for (var i=0; i<answerInputs.length; i++) {
+		if (radioInputs[i].checked) {
+			var answer = answerInputs[i].value;
+			console.log(answer);
+			return answer;
+		}
+	}
 }
 
 function getQuestionAnswers(questionParent) {

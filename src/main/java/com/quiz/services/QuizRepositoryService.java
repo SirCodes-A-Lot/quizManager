@@ -46,12 +46,6 @@ public class QuizRepositoryService {
 	}
 	
 	public Quiz getQuizById(int id) {
-		System.out.println(id);
-		Iterator<Quiz> quizes = quizRepository.findAll().iterator();
-		while (quizes.hasNext()) {
-			Quiz quiz = quizes.next();
-			System.out.println("quiz id " + quiz.getQuizId() + quiz.getTitle());
-		}
 		return quizRepository.findById(id).get();
 	}
 

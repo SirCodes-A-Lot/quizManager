@@ -80,4 +80,10 @@ public class QuizService {
 		quizRepositoryService.deleteQuizById(quizId);
 	}
 
+	public int markQuiz(HashMap<String, Object> requestData) {
+		System.out.println(requestData);
+		return 10;
+		
+	}
+
 }

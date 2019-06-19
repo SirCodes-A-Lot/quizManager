@@ -14,7 +14,7 @@
 		</span>
 		<h1 th:text="${selectedQuiz.title}"></h1>
 		<h3 th:text="${selectedQuiz.description}"></h3>
-		<div id="allQuestions">
+		<form id="allQuestions" th:data-quiz-id="${selectedQuiz.quizId}" >
 		<th:block th:each="questionEntry : ${selectedQuiz.questions.questions}">
 			<div class="question">
 				<p th:text="${questionEntry.question}"></p>
@@ -28,7 +28,8 @@
 		   		</th:block>
 		   	</div>
    		</th:block>
-   		</div>
+   		<button th:if="${session.access} == 'View' OR ${session.access} == 'Edit'" id="markQuiz" type ="submit">Mark Quiz</button>
+   		</form>
 		<script src = "/js/question-page.js"></script>
 	</body>
 </html>

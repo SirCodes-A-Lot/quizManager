@@ -15,14 +15,14 @@ import com.quiz.services.QuizService;
 import com.quiz.services.UserValidationService;
 
 @RestController
-public class QuizModifierApi {
+public class QuizApis {
 	
 	private QuizService quizService;
 	
 	private UserValidationService userValidationService;
 	
 	@Autowired
-	public QuizModifierApi (QuizService quizService, UserValidationService userValidationService) {
+	public QuizApis (QuizService quizService, UserValidationService userValidationService) {
 		this.quizService = quizService;
 		this.userValidationService = userValidationService;
 	}
@@ -32,7 +32,6 @@ public class QuizModifierApi {
 		Response response = new Response();
 		if (userValidationService.isEditor(request)) {
 			quizService.saveQuizChangesToDatabase(requestData);
-			System.out.println(requestData);
 			response.setStatus("200");
 		} else {
 			response.setStatus("401");
@@ -57,7 +56,19 @@ public class QuizModifierApi {
 		Response response = new Response();
 		if (userValidationService.isEditor(request)) {
 			quizService.deleteQuiz(requestData);
-			System.out.println(requestData);
+			response.setStatus("200");
+		} else {
+			response.setStatus("401");
+		}
+		return response;
+	}
+	
+	@PostMapping("/markQuiz")
+	public Response markQuiz(@RequestBody HashMap<String,Object>requestData, HttpServletRequest request) {
+		Response response = new Response();
+		if (userValidationService.isEditorOrView(request)) {
+			HashMap<String, Integer>responseData = new HashMap<>();
+			responseData.put("score", quizService.markQuiz(requestData));
 			response.setStatus("200");
 		} else {
 			response.setStatus("401");

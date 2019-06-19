@@ -27,7 +27,6 @@ public class PageControllers {
 	
 	@GetMapping("/home")
 	public String getHomePage(HttpServletRequest request, Model model) {
-		System.out.println("accessing /home");
 		if (userValidationService.isLoggedIn(request)) {
 			quizService.addAllQuizesToModel(model);
 			return "home";
