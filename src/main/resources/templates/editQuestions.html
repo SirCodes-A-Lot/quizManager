@@ -13,14 +13,14 @@
 			<a class="navButton" th:href="@{/viewQuiz(quizId=${selectedQuiz.quizId})}">view quiz</a>
 		</span>
 		<br>
-		<br>
-		<button type ="submit" id="saveQuiz">Save Changes</button>
-		<form type ="submit" id="newQuestionForm">
+		<form id="newQuestionForm">
 			<button id="addQuestion">Add Question</button>
 			<select name="newQuestionNumber" id="newQuestionDropDown">
 			</select>
 		</form>
 		<form id="editQuiz">
+			<br>
+			<button type ="submit" id="saveQuiz">Save Changes</button>
 			<br>
 			Title
 			<br>
@@ -36,7 +36,8 @@
 							<input class="answerTextInput" th:value="${answer}"></input>
 						</div>
 			   		</th:block>
-			   		<button id = deleteQuestion>Delete Question</button>
+			   		<button class="addAnswer">Add Answer</button>
+			   		<button class="deleteQuestion">Delete Question</button>
 		   		</div>
 	   		</th:block>
 	   		</div>

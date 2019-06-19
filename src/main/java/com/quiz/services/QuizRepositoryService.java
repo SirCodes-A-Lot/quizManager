@@ -49,9 +49,9 @@ public class QuizRepositoryService {
 		System.out.println(id);
 		Iterator<Quiz> quizes = quizRepository.findAll().iterator();
 		while (quizes.hasNext()) {
-			System.out.println("quiz id " + quizes.next().getQuizId() + quizes.next().getTitle());
+			Quiz quiz = quizes.next();
+			System.out.println("quiz id " + quiz.getQuizId() + quiz.getTitle());
 		}
-		System.out.println(quizRepository.findAll());
 		return quizRepository.findById(id).get();
 	}
 }

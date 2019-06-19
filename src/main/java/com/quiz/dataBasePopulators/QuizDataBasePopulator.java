@@ -2,6 +2,7 @@ package com.quiz.dataBasePopulators;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -61,6 +62,7 @@ public class QuizDataBasePopulator {
 		
 		quizes.add(quiz1);
 		quizes.add(quiz2);
+		
 		return quizes;
 	}
 	
@@ -82,6 +84,12 @@ public class QuizDataBasePopulator {
 		ArrayList<Quiz> quizes = getDefaultQuizes();
 		for (int i =0; i< quizes.size(); i++){
 			quizRepositoryService.save(quizes.get(i));
+		}
+		
+		Iterator<Quiz> savedQuizes = quizRepositoryService.getAllQuizes().iterator();
+		while (savedQuizes.hasNext()) {
+			Quiz quiz = savedQuizes.next();
+			System.out.println("quiz id " + quiz.getQuizId() + quiz.getTitle());
 		}
 		ArrayList<UserType> users = getDefaultUsers();
 		for (int i =0; i< users.size(); i++){

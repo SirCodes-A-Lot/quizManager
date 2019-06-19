@@ -1,36 +1,81 @@
-var newQuestionTemporaryIdInt = 1;
+var temporaryIdInt = 1;
 $(document).ready(function() {
 	document.getElementById("editQuiz").addEventListener("submit", saveQuizSubmit, false);
-	document.getElementById("deleteQuestion").addEventListener("click", deleteQuestion, false);
+	//document.getElementById("addAnswer").addEventListener("click", deleteQuestion, false);
 	document.getElementById("newQuestionForm").addEventListener("submit", addQuestion, false);
+	setDeleteQuestionHandler();
+	setAddAnswerHandler();
 	populateAddQuestionDropDown();
 });
 
-function addQuestion(e){
+function setAddAnswerHandler() {
+	var addAnswerButtons = document.getElementsByClassName("addAnswer");
+	for (var i = 0; i < addAnswerButtons.length; i++) {
+		addAnswerButtons[i].addEventListener("click", addAnswer, false);
+	}
+}
+
+function setDeleteQuestionHandler() {
+	var deleteButtons = document.getElementsByClassName("deleteQuestion");
+	for (var i = 0; i < deleteButtons.length; i++) {
+		deleteButtons[i].addEventListener("click", deleteQuestion, false);
+	}
+}
+
+function addAnswer(e) {
+	e.preventDefault();
+	console.log("here");
+	var parentQuestion = e.target.parentElement;
+	var answerDivs = e.target.parentElement.getElementsByClassName("answer");
+	var firstAnswer = answerDivs[0];
+	var parentQuestionId = parentQuestion.getAttribute("data-question-id");
+	parentQuestion.insertBefore(createAnswer(parentQuestionId), firstAnswer);
+    numberQuestionsAndAnswers();
+	
+}
+
+function createAnswer(parentQuestionId){
+	console.log("createAnswer");
+	var newAnswer = document.createElement("DIV");
+	newAnswer.setAttribute("class", "answer");
+	var newAnswerContent = "<input class='radioAnswer' type='radio' name='" + parentQuestionId + "' value='notSet'></input>" +
+	"<input class='answerTextInput'></input>";
+	newAnswer.innerHTML = newAnswerContent;
+	console.log(newAnswer);
+	return newAnswer;
+}
+
+function addQuestion(e) {
 	e.preventDefault();
 	var questionDiv = $("#allQuestions");
 	var question = makeDefaultQuestion();
 	var position = 	document.getElementById("newQuestionDropDown").value-1;
-	//if (position <= $(".question").length){
-	//	console.log(question);
-	//	//questionDiv.prepend(question);
-	//	questionDiv.insertBefore(question, questionDiv.children()[position]);
-	//}
     if(position === 0) {
     	$("#allQuestions").prepend(question);
     } else {
     	$("#allQuestions > div:nth-child(" + (position) + ")").after(question);
     }
-}
-function insertAtIndex(i, newElement, parentElement) {
-
+    numberQuestionsAndAnswers();
+    populateAddQuestionDropDown();
+    setDeleteQuestionHandler();
 }
 
 function makeDefaultQuestion(){
 	var newQuestion = document.createElement("DIV");
-	newQuestion.setAttribute("class", "answerLabel");
-	newQuestion.innerHTML= "<div>hello</div>";
+	newQuestion.setAttribute("class", "question");
+	newQuestion.setAttribute("data-question-id", "newId" + temporaryIdInt);
+	newQuestion.innerHTML= ""+
+			"<textarea class='questionInput'>New Question</textarea>" +
+		  		"<div class='answer'>" +
+		   			"<input class='radioAnswer' type='radio' name='newId" + temporaryIdInt + "' value= 'notSet' checked>" +
+		   			//<input th:if="${answer} != ${questionEntry.correctAnswer}" class="radioAnswer" type="radio" th:name="${questionEntry.id}" th:value="${answer}">
+					"<input class='answerTextInput' th:value='notSet'></input>" +
+				"</div>" +
+			 "<button class='addAnswer'>Add Answer</button>" +
+			 "<button class='deleteQuestion'>Delete Question</button>";
+	
 	console.log(newQuestion);
+	temporaryIdInt +=1;
 	return newQuestion;
 }
 
