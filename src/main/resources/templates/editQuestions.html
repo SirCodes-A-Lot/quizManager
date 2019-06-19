@@ -34,6 +34,7 @@
 		   					<input th:if="${answer} == ${questionEntry.correctAnswer}" class="radioAnswer" type="radio" th:name="${questionEntry.id}" th:value="${answer}" checked>
 		   					<input th:if="${answer} != ${questionEntry.correctAnswer}" class="radioAnswer" type="radio" th:name="${questionEntry.id}" th:value="${answer}">
 							<input class="answerTextInput" th:value="${answer}"></input>
+							<button class="deleteAnswer">Delete Answer</button>
 						</div>
 			   		</th:block>
 			   		<button class="addAnswer">Add Answer</button>

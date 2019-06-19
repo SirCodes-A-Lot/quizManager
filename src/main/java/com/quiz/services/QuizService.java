@@ -1,6 +1,7 @@
 package com.quiz.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,20 @@ public class QuizService {
 		quiz.setTitle((String) submittedQuestionData.get("title"));
 		questionList.setQuestions(newQuestions);
 		quizRepositoryService.update(quiz);
+	}
+
+	public void makeNewDefaultQuiz() {
+		QuestionList questionList = new QuestionList();
+		String[] questionAnswers = {"answer 1","answer 2"};
+		Question question = new Question(questionAnswers, "answer 1", "Type your question here", questionList);
+		questionList.setQuestions(new ArrayList<Question>(Arrays.asList(question)));
+		Quiz quiz = new Quiz(
+				getNextAvailableQuizId(),
+				"New Quiz",
+				"description",
+				questionList
+				);
+		quizRepositoryService.save(quiz);
 	}
 
 }

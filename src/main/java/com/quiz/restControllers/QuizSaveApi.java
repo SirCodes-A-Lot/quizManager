@@ -38,4 +38,16 @@ public class QuizSaveApi {
 		}
 		return response;
 	}
+	
+	@PostMapping("/addQuiz")
+	public Response addQuiz(HttpServletRequest request) {
+		Response response = new Response();
+		if (userValidationService.isEditor(request)) {
+			quizService.makeNewDefaultQuiz();
+			response.setStatus("200");
+		} else {
+			response.setStatus("401");
+		}
+		return response;
+	}
 }

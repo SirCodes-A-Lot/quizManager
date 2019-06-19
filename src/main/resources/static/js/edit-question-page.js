@@ -1,12 +1,19 @@
 var temporaryIdInt = 1;
 $(document).ready(function() {
 	document.getElementById("editQuiz").addEventListener("submit", saveQuizSubmit, false);
-	//document.getElementById("addAnswer").addEventListener("click", deleteQuestion, false);
 	document.getElementById("newQuestionForm").addEventListener("submit", addQuestion, false);
 	setDeleteQuestionHandler();
 	setAddAnswerHandler();
+	setDeleteAnswerHandler();
 	populateAddQuestionDropDown();
 });
+
+function setDeleteAnswerHandler() {
+	var deleteAnswerButtons = document.getElementsByClassName("deleteAnswer");
+	for (var i = 0; i < deleteAnswerButtons.length; i++) {
+		deleteAnswerButtons[i].addEventListener("click", deleteAnswer, false);
+	}
+}
 
 function setAddAnswerHandler() {
 	var addAnswerButtons = document.getElementsByClassName("addAnswer");
@@ -22,9 +29,13 @@ function setDeleteQuestionHandler() {
 	}
 }
 
-function addAnswer(e) {
+function deleteAnswer(e) {
 	e.preventDefault();
 	console.log("here");
+}
+
+function addAnswer(e) {
+	e.preventDefault();
 	var parentQuestion = e.target.parentElement;
 	var answerDivs = e.target.parentElement.getElementsByClassName("answer");
 	var firstAnswer = answerDivs[0];

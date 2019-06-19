@@ -8,10 +8,15 @@
 	</head>
 	<body>
 		<h2>Please select a quiz</h2>
+		<button th:if="${session.access} == 'Edit'" id="addQuizButton">New Quiz</button>
+		<br>
+		<br>
+		<div class="quizList">
 		<th:block th:each="quiz : ${quizes}">
 			<a th:href="@{/viewQuiz(quizId=${quiz.quizId})}" th:text="${quiz.title}"></a>
 			<p th:text="${quiz.description}"></p>
    		</th:block>
+   		</div>
 		<script src = "/js/home-page.js"></script>
 	</body>
 </html>
