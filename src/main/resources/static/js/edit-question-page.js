@@ -31,7 +31,12 @@ function setDeleteQuestionHandler() {
 
 function deleteAnswer(e) {
 	e.preventDefault();
-	console.log("here");
+	var answer = e.target.parentElement;
+	var question = answer.parentNode;
+	if (question.getElementsByClassName("answer").length > 2){
+		question.removeChild(answer);
+		numberQuestionsAndAnswers();
+	}
 }
 
 function addAnswer(e) {
@@ -42,7 +47,7 @@ function addAnswer(e) {
 	var parentQuestionId = parentQuestion.getAttribute("data-question-id");
 	parentQuestion.insertBefore(createAnswer(parentQuestionId), firstAnswer);
     numberQuestionsAndAnswers();
-	
+    setDeleteAnswerHandler();
 }
 
 function createAnswer(parentQuestionId){
@@ -50,7 +55,8 @@ function createAnswer(parentQuestionId){
 	var newAnswer = document.createElement("DIV");
 	newAnswer.setAttribute("class", "answer");
 	var newAnswerContent = "<input class='radioAnswer' type='radio' name='" + parentQuestionId + "' value='notSet'></input>" +
-	"<input class='answerTextInput'></input>";
+	"<input class='answerTextInput'></input>"+
+	"<button class='deleteAnswer'>Delete Answer</button>";
 	newAnswer.innerHTML = newAnswerContent;
 	console.log(newAnswer);
 	return newAnswer;
@@ -69,6 +75,8 @@ function addQuestion(e) {
     numberQuestionsAndAnswers();
     populateAddQuestionDropDown();
     setDeleteQuestionHandler();
+    setAddAnswerHandler();
+    setDeleteAnswerHandler();
 }
 
 function makeDefaultQuestion(){
@@ -77,11 +85,16 @@ function makeDefaultQuestion(){
 	newQuestion.setAttribute("data-question-id", "newId" + temporaryIdInt);
 	newQuestion.innerHTML= ""+
 			"<textarea class='questionInput'>New Question</textarea>" +
-		  		"<div class='answer'>" +
-		   			"<input class='radioAnswer' type='radio' name='newId" + temporaryIdInt + "' value= 'notSet' checked>" +
-		   			//<input th:if="${answer} != ${questionEntry.correctAnswer}" class="radioAnswer" type="radio" th:name="${questionEntry.id}" th:value="${answer}">
-					"<input class='answerTextInput' th:value='notSet'></input>" +
-				"</div>" +
+		  	"<div class='answer'>" +
+		   		"<input class='radioAnswer' type='radio' name='newId" + temporaryIdInt + "' value= 'notSet' checked></input>" +
+				"<input class='answerTextInput' th:value='notSet'></input>" +
+				"<button class='deleteAnswer'>Delete Answer</button>" +
+			"</div>" +
+		  	"<div class='answer'>" +
+	   			"<input class='radioAnswer' type='radio' name='newId" + temporaryIdInt + "' value= 'notSet'></input>" +
+	   			"<input class='answerTextInput' th:value='notSet'></input>" +
+	   			"<button class='deleteAnswer'>Delete Answer</button>" +
+			"</div>" +
 			 "<button class='addAnswer'>Add Answer</button>" +
 			 "<button class='deleteQuestion'>Delete Question</button>";
 	
@@ -121,7 +134,8 @@ function getQuizData() {
 	var data = {
 			"quizId":getQuizId(),
 			"title": getTitle(),
-			"questions" : getQuestions()
+			"description": getDescription(),
+			"questions": getQuestions()
 	};
 	console.log(data);
 	var formData = JSON.stringify(data);
@@ -136,6 +150,11 @@ function getQuizId() {
 function getTitle() {
 	var title = document.getElementById("titleInput");
 	return title.value;
+}
+
+function getDescription() {
+	var description = document.getElementById("descriptionInput");
+	return description.value;
 }
 
 function getQuestions(){

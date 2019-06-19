@@ -25,6 +25,10 @@
 			Title
 			<br>
 			<input id="titleInput" th:value="${selectedQuiz.title}"></input>
+			<br>
+			Description
+			<br>
+			<textarea id="descriptionInput" th:text="${selectedQuiz.description}"></textarea>
 			<div id="allQuestions" th:data-quiz-id="${selectedQuiz.quizId}">
 			<th:block th:each="questionEntry : ${selectedQuiz.questions.questions}">
 				<div class="question" th:data-question-id="${questionEntry.id}">

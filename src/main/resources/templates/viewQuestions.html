@@ -13,6 +13,7 @@
 			<a th:if="${session.access} == 'Edit'" class="navButton" th:href="@{/editQuiz(quizId=${selectedQuiz.quizId})}">edit quiz</a>
 		</span>
 		<h1 th:text="${selectedQuiz.title}"></h1>
+		<h3 th:text="${selectedQuiz.description}"></h3>
 		<div id="allQuestions">
 		<th:block th:each="questionEntry : ${selectedQuiz.questions.questions}">
 			<div class="question">

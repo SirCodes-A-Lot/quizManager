@@ -56,6 +56,7 @@ public class QuizService {
 		}
 		quiz.setQuestions(questionList);
 		quiz.setTitle((String) submittedQuestionData.get("title"));
+		quiz.setDescription((String) submittedQuestionData.get("description"));
 		questionList.setQuestions(newQuestions);
 		quizRepositoryService.update(quiz);
 	}
