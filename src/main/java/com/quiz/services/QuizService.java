@@ -3,6 +3,7 @@ package com.quiz.services;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,8 +82,20 @@ public class QuizService {
 	}
 
 	public int markQuiz(HashMap<String, Object> requestData) {
+		int quizId = Integer.parseInt((String) requestData.get("quizId"));
 		System.out.println(requestData);
-		return 10;
+		ArrayList<String> submittedAnswers = (ArrayList<String>) requestData.get("answers");
+		Quiz quiz = quizRepositoryService.getQuizById(quizId);
+		List<Question> quizQuestions = quiz.getQuestions().getQuestions();
+		int score = 0;
+		for (int i=0; i<submittedAnswers.size(); i++) {
+			String providedAnswer = submittedAnswers.get(i);
+			String correctAnswer = quizQuestions.get(i).getCorrectAnswer();
+			if (providedAnswer.contentEquals(correctAnswer)) {
+				score +=1;
+			}
+		}
+		return score;
 		
 	}
 

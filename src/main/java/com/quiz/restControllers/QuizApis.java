@@ -67,8 +67,9 @@ public class QuizApis {
 	public Response markQuiz(@RequestBody HashMap<String,Object>requestData, HttpServletRequest request) {
 		Response response = new Response();
 		if (userValidationService.isEditorOrView(request)) {
-			HashMap<String, Integer>responseData = new HashMap<>();
+			HashMap<String, Object>responseData = new HashMap<>();
 			responseData.put("score", quizService.markQuiz(requestData));
+			response.setData(responseData);
 			response.setStatus("200");
 		} else {
 			response.setStatus("401");
