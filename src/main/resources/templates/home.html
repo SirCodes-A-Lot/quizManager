@@ -13,8 +13,11 @@
 		<br>
 		<div class="quizList">
 		<th:block th:each="quiz : ${quizes}">
+		<div class="quizEntry" th:data-quiz-id=${quiz.quizId}>
 			<a th:href="@{/viewQuiz(quizId=${quiz.quizId})}" th:text="${quiz.title}"></a>
 			<p th:text="${quiz.description}"></p>
+			<button th:if="${session.access} == 'Edit'" class="deleteQuizButton">delete Quiz</button>
+		</div>
    		</th:block>
    		</div>
 		<script src = "/js/home-page.js"></script>
