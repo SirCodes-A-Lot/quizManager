@@ -7,6 +7,9 @@
 	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
+		<span class = "navBar">
+			<a class="navButton" href="/">log out</a>
+		</span>
 		<h2>Please select a quiz</h2>
 		<button th:if="${session.access} == 'Edit'" id="addQuizButton">New Quiz</button>
 		<br>
