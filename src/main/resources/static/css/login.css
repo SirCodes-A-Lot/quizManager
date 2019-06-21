@@ -1,3 +1,14 @@
 h4 {
 	color : var(--dark)
 }
+
+#loginBody{
+	display: flex;
+	flex-direction: row;
+	padding: 3px;
+	justify-content: space-around;
+}
+
+#companyLogo{
+	 height = "200px";
+}

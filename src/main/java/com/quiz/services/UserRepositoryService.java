@@ -17,7 +17,11 @@ public class UserRepositoryService {
 	}
 	
 	public String getHashedPasswordForUser(String userType) {
-		return userRepository.findByUserType(userType).getHashedPassword();
+		UserType user = userRepository.findByUserType(userType);
+		if (user == null) {
+			return null;
+		}
+		return user.getHashedPassword();
 	}
 
 	public void save(UserType userType) {

@@ -25,6 +25,7 @@ function ajaxSubmitAnswers(formData) {
 				window.location.href = "/home"
 			} else {
 				console.log("ERROR:  ", "not successful");
+				$("#loginFailedText").text("Log in failed, please try again or contact the administrator");
 			}
 		},
 		error : function(e) {
