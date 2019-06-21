@@ -1,8 +1,13 @@
+body {
+	background-color: var(--fill-medium);
+}
+
 .question{
-	border: 2px solid Black;
+	border: 2px solid var(--dark);
+	border-radius: 5px;
 	padding: 5px;
-	margin-top: 10px;
-	background-color: AliceBlue;
+	margin: 10px;
+	background-color: var(--fill-light);
 }
 
 .answer{

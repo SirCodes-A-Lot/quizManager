@@ -36,7 +36,6 @@ public class QuizService {
 	}
 
 	public void addQuizDataToModel(Model model, String quizId) {
-		System.out.println(quizRepositoryService.getQuizById(Integer.parseInt(quizId)).getQuestions());
 		model.addAttribute("questions",quizRepositoryService.getQuizById(Integer.parseInt(quizId)).getQuestions());
 		model.addAttribute(QuizConstants.SELECTED_QUIZ, quizRepositoryService.getQuizById(Integer.parseInt(quizId)));
 	}
@@ -51,7 +50,7 @@ public class QuizService {
 			HashMap<String,Object> questionData = (HashMap<String, Object>) submittedQuestions.get(i);
 			String[] answerOptions = ((ArrayList<String>) questionData.get("answers")).toArray(new String[0]);
 			String questionText= (String) questionData.get("question");
-			String correctAnswer = "need to finish this";
+			String correctAnswer = (String) questionData.get("correctAnswer");
 			Question newQuestion = new Question(answerOptions, correctAnswer, questionText, questionList);
 			newQuestions.add(newQuestion);
 		}

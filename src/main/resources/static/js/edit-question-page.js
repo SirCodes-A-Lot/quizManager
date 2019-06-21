@@ -58,7 +58,6 @@ function createAnswer(parentQuestionId){
 	"<input class='answerTextInput'></input>"+
 	"<button class='deleteAnswer'>Delete Answer</button>";
 	newAnswer.innerHTML = newAnswerContent;
-	console.log(newAnswer);
 	return newAnswer;
 }
 
@@ -158,7 +157,6 @@ function getDescription() {
 
 function getQuestions(){
 	var questionParents = $(".question");
-	console.log(questionParents);
 	var questions = [];
 	for (var i=0; i<questionParents.length; i++) {
 		var questionParent = questionParents.get(i);
@@ -168,7 +166,7 @@ function getQuestions(){
 				"answers":getQuestionAnswers(questionParent),
 				"correctAnswer":getCorrectAnswer(questionParent)
 		}
-		console.log(questionInput);
+		console.log(questionData);
 		questions.push(questionData);
 	}
 	return questions;

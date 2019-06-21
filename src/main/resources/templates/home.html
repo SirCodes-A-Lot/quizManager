@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Quiz</title>
+		<link rel="stylesheet" th:href= "@{/css/colourScheme.css}">
+		<link rel="stylesheet" th:href= "@{/css/allPages.css}">
 		<link rel="stylesheet" th:href= "@{/css/home.css}">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -10,14 +12,14 @@
 		<span class = "navBar">
 			<a class="navButton" href="/">log out</a>
 		</span>
-		<h2>Please select a quiz</h2>
+		<h1>Please select a quiz</h1>
 		<button th:if="${session.access} == 'Edit'" id="addQuizButton">New Quiz</button>
 		<br>
 		<br>
 		<div class="quizList">
 		<th:block th:each="quiz : ${quizes}">
 		<div class="quizEntry" th:data-quiz-id=${quiz.quizId}>
-			<a th:href="@{/viewQuiz(quizId=${quiz.quizId})}" th:text="${quiz.title}"></a>
+			<a class = "quizTitle" th:href="@{/viewQuiz(quizId=${quiz.quizId})}" th:text="${quiz.title}"></a>
 			<p th:text="${quiz.description}"></p>
 			<button th:if="${session.access} == 'Edit'" class="deleteQuizButton">delete Quiz</button>
 		</div>

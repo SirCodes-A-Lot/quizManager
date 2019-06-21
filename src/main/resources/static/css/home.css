@@ -1,6 +1,21 @@
+.quizList {
+	display: flex;
+  	flex-flow: row wrap;
+}
+
 .quizEntry{
-	border: 2px solid Black;
+	border: 2px solid var(--dark);
+	border-radius: 5px;
 	padding: 5px;
-	margin-top: 10px;
-	background-color: ivory;
+	margin: 2px;
+	background-color: var(--fill-medium);
+	width: 30%;
+}
+
+.quizTitle {
+	color: var(--link-color);
+	padding: 0px;
+	border: none;
+	background-color: var(--fill-medium);
+	font-size: 25px;
 }

@@ -1,0 +1,7 @@
+body {
+	background-color: var(--fill-light);
+}
+
+.question{
+	background-color: var(--fill-medium);
+}
